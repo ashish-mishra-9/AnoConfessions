@@ -34,7 +34,7 @@ app.use(passport.session());
 main().catch(err => console.log(err));
 
 async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/userDB');
+  await mongoose.connect('`${process.env.MONGODB_URL}`');
 }
 
 const userSchema = new mongoose.Schema({
@@ -72,7 +72,7 @@ passport.serializeUser(function(user, cb) {
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/auth/google/secrets"
+    callbackURL: "http://anoconfessions.onrender.com/auth/google/secrets"
   },
   function(accessToken, refreshToken, profile, cb) {
     // console.log(profile);
